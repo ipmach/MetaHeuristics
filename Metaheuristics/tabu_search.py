@@ -1,9 +1,28 @@
+import numpy as np
+
+
 class TabuSearch:
 
     def __init__(self, problem):
         self.problem = problem
         self.name = "Tabu Search"
         self.abbreviation = 'TB'
+
+    def in_list(self, c, clist):
+        """
+        Check if is in the list
+        :param c: candidate
+        :param clist: list
+        :return:
+        """
+        for cl in clist:
+            if isinstance(c, list) or type(c).__module__ == np.__name__:
+                if len(c) == len(cl) and all(c == cl):
+                    return True
+            else:
+                if c == cl:
+                    return True
+        return False
 
     def __call__(self, max_iter=1000, list_size=40,
                  num_candidates=4):
@@ -23,7 +42,7 @@ class TabuSearch:
             bestCandidate = candidates[0]
             f_best = self.problem(bestCandidate)
             for c in candidates:
-                if c not in tabulist and self.problem(c) < f_best:
+                if self.in_list(c, tabulist) and self.problem(c) < f_best:
                     bestCandidate = c
                     f_best = self.problem(bestCandidate)
             if f_best < self.problem(solution):

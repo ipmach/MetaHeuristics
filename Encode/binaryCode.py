@@ -3,7 +3,10 @@ import numpy as np
 class BinaryCode:
 
     def __init__(self, jump=0.1):
-        self.jump = int(1/jump)
+        if jump == 0:
+            self.jump = 1
+        else:
+            self.jump = int(1/jump)
         # Vectorize functions
         self.dec2binv = np.vectorize(self.dec2bin)
         self.bin2decv = np.vectorize(self.bin2dec)

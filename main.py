@@ -9,18 +9,18 @@ from Metaheuristics.genetic_algorithm import GeneticAlgorithm
 from Metaheuristics.PBIL import PopulationBaseIncrementalLearning
 from Metaheuristics.tabu_search import TabuSearch
 
-problem = Parabola()
-problem = Quadratic()
+#problem = Parabola()
+#problem = Quadratic()
 problem = HardPolynomial()
 x, y = problem.generate_space()
 
 
 #solver = LocalSearch(problem)
-#solver = SimmulatedAnneling(problem)
+solver = SimmulatedAnneling(problem)
 #solver = IteratedLocalSearch(problem, criterion='LSMC')
 #solver = GeneticAlgorithm(problem, rank=False)
 #solver = PopulationBaseIncrementalLearning(problem)
-solver = TabuSearch(problem)
+#solver = TabuSearch(problem)
 solution, iterations = solver(max_iter=200)
 
 

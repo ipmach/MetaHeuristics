@@ -24,13 +24,8 @@ class IteratedLocalSearch:
         :param p: perturbation change
         :return: new solution
         """
-        if solution + p > self.problem.max_:
-            return solution - p
+        return self.problem.perturbation(solution, p=p)
 
-        if solution - p < self.problem.min_:
-            return solution + p
-
-        return np.random.choice([solution - p, solution + p])
 
     def better(self, solution, solution_):
         """
@@ -82,7 +77,8 @@ class IteratedLocalSearch:
             solution_, _ = localsearch(solution=solution_)
             solution = self.AcceptanceCriterion(solution, solution_)
             history.append(copy.copy(solution))
-            if solution - history[-2] <= 10e-9:
+            if all(np.array(solution).shape == np.array(history[-2])) and \
+                    np.sum(np.array(solution) - np.array(history[-2])) <= 10e-9:
                 break_ += 1
             else:
                 break_ = 0
