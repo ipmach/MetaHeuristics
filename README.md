@@ -23,6 +23,8 @@
   python main_statis_KSP.py
 ```
 
+![Graph](https://github.com/ipmach/MetaHeuristics/blob/main/Documentation/Plot_2.png)
+
 ## 1D function Problem
 
 ``` python 
