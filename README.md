@@ -6,7 +6,7 @@
 - Local Search (SL)
 - Iterated Local Search (ILS)
 - Population Base Incremental Learning (PBIL)
-- Simmulated Anneling (SA)
+- Simulated Annealing (SA)
 - Tabu Search (TS)
 
 ## Knapsack Problem
