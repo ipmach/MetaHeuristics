@@ -3,9 +3,14 @@ import numpy as np
 
 class PopulationBaseIncrementalLearning:
 
-    def __init__(self, problem):
+    def __init__(self, problem, encode=None):
         self.problem = problem
-        self.bc = BinaryCode(jump=problem.jump)
+        if encode is None:
+            self.bc = BinaryCode(jump=problem.jump)
+            self.size_given = False
+        else:
+            self.bc = encode
+            self.size_given = True
         self.name = "Population Base Incremental Learning"
         self.abbreviation = 'PBIL'
 
@@ -21,10 +26,18 @@ class PopulationBaseIncrementalLearning:
             aux = [str(np.random.choice([0, 1], p=[1-p,p]))
                                         for p in P]
             aux = "".join(aux)
-            while not(self.problem.min_ <= self.bc.bin2decv(aux) <= self.problem.max_):
-                aux = [str(np.random.choice([0, 1], p=[1 - p, p]))
-                       for p in P]
-                aux = "".join(aux)
+            if self.size_given:
+                while not(self.problem.min_ <=
+                          self.problem.isValid(self.bc.bin2dec(aux))
+                          <= self.problem.max_):
+                    aux = [str(np.random.choice([0, 1], p=[1 - p, p]))
+                           for p in P]
+                    aux = "".join(aux)
+            else:
+                while not(self.problem.min_ <= self.bc.bin2decv(aux) <= self.problem.max_):
+                    aux = [str(np.random.choice([0, 1], p=[1 - p, p]))
+                           for p in P]
+                    aux = "".join(aux)
             population.append(aux)
         return population
 
@@ -38,10 +51,14 @@ class PopulationBaseIncrementalLearning:
         :param number_update: population use to update P
         :return: Solution and history of solutions
        """
-       max_value = (1/self.problem.jump) * (self.problem.max_ -
-                                            self.problem.min_)
        # Initialize P
-       P = np.ones(len(self.bc.dec2bin(max_value))) * 0.5
+       if self.size_given:
+           P = np.ones(self.bc.num_nodes) * 0.5
+       else:
+           max_value = (1/self.problem.jump) * (self.problem.max_ -
+                                                self.problem.min_)
+
+           P = np.ones(len(self.bc.dec2bin(max_value))) * 0.5
        population = self.generate(P, generation_number)
        eval = self.problem(self.bc.bin2decv(population))
        history = [population[np.argmin(eval)]]
@@ -55,6 +72,6 @@ class PopulationBaseIncrementalLearning:
            population = self.generate(P, generation_number)
            eval = self.problem(self.bc.bin2decv(population))
            history.append(population[np.argmin(eval)])
-       solution = self.bc.bin2decv(population[np.argmin(eval)])
+       solution = self.bc.bin2dec(population[np.argmin(eval)])
        history = self.bc.bin2decv(history)
        return solution, history

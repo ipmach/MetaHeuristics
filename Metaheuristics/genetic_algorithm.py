@@ -4,9 +4,13 @@ import copy
 
 class GeneticAlgorithm:
 
-    def __init__(self, problem, elit_=True, rank=False):
+    def __init__(self, problem, elit_=True, rank=False,
+                 encode=None):
         self.problem = problem
-        self.bc = BinaryCode(jump=problem.jump)
+        if encode is None:
+            self.bc = BinaryCode(jump=problem.jump)
+        else:
+            self.bc = encode
         self.name = "Genetic Algorithm"
         self.abbreviation = 'GA'
         self.do_rank = rank
@@ -138,6 +142,6 @@ class GeneticAlgorithm:
             history.append(population[np.argmin(eval)])
             if np.sum(np.max(eval) - np.array(eval)) == 0:
                 break
-        solution = self.bc.bin2decv(population[np.argmin(eval)])
+        solution = self.bc.bin2dec(population[np.argmin(eval)])
         history = self.bc.bin2decv(history)
         return solution, history
