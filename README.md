@@ -6,7 +6,7 @@
 - Local Search (SL)
 - Iterated Local Search (ILS)
 - Population Base Incremental Learning (PBIL)
-- Simmulated Anneling (SA)
+- Simulated Annealing (SA)
 - Tabu Search (TS)
 
 ## Knapsack Problem
@@ -22,6 +22,8 @@
 ``` python 
   python main_statis_KSP.py
 ```
+
+![Graph](https://github.com/ipmach/MetaHeuristics/blob/main/Documentation/Plot_2.png)
 
 ## 1D function Problem
 
