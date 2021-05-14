@@ -24,16 +24,18 @@ class TabuSearch:
                     return True
         return False
 
-    def __call__(self, max_iter=1000, list_size=40,
+    def __call__(self, solution=None, max_iter=1000, list_size=40,
                  num_candidates=4):
         """
         Solver
+        :param solution: initial solution
         :param max_iter: max number of iterations
         :param list_size: max size of tabu list
         :param num_candidates: number of candidates generated
         :return: Solution and history of solutions
         """
-        solution = self.problem.give_random_point()
+        if solution is None:
+            solution = self.problem.give_random_point()
         history = [solution]
         tabulist = [solution]
         for _ in range(max_iter):

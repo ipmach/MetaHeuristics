@@ -61,14 +61,16 @@ class IteratedLocalSearch:
             return solution_
         return solution
 
-    def __call__(self, max_iter=1000):
+    def __call__(self, solution=None, max_iter=1000):
         """
         Solver
+        :param solution: initial solution
         :param max_iter: max number of iterations
         :return: Solution and history of solutions
         """
         localsearch = LocalSearch(self.problem)
-        solution = self.problem.give_random_point()
+        if solution is None:
+            solution = self.problem.give_random_point()
         solution, _ = localsearch(solution=solution)
         history = [solution]
         break_ = 0

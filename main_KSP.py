@@ -12,7 +12,7 @@ from Metaheuristics.iterated_local_search import IteratedLocalSearch
 import matplotlib.pyplot as plt
 import numpy as np
 
-size = 1000
+size = 2000
 problem = KSP(size)
 
 #solver = LocalSearch(problem)

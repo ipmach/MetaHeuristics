@@ -31,16 +31,19 @@ class SimmulatedAnneling:
         """
         return T - c
 
-    def __call__(self, max_iter=1000, T=90, c=0.9, threshold=0.001):
+    def __call__(self, solution=None, max_iter=1000, T=90,
+                 c=0.9, threshold=0.001):
         """
         Solver
+        :param solution: initial solution
         :param max_iter: max number of iterations
         :param T: Initial temperature
         :param c: Cooling factor
         :param threshold: break threshold
         :return: Solution and history of solutions
         """
-        solution = self.problem.give_random_point()
+        if solution is None:
+            solution = self.problem.give_random_point()
         history = [solution]
         for _ in range(max_iter):
             solution_ = self.problem.give_random_point()
