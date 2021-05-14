@@ -2,7 +2,7 @@
 
 ## Metaheuristics implemented
 
-- Genetic Algortithm (GA)
+- Genetic Algorithm (GA)
 - Local Search (SL)
 - Iterated Local Search (ILS)
 - Population Base Incremental Learning (PBIL)
