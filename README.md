@@ -8,6 +8,7 @@
 - Population Base Incremental Learning (PBIL)
 - Simulated Annealing (SA)
 - Tabu Search (TS)
+- Artificial Bee Colony (ABC)
 
 ## Knapsack Problem
 
@@ -49,6 +50,7 @@
 - An Overview of Genetic Algorithms: Part 1, Fundamentals (David Beasley, David R.Bull, Ralph R. Martin)
 - Comparison of Metaheuristics (John Silberholz and Bruce Golden)
 - Removing the Genetics from the Standard Genetic Algorithm
+- Artiﬁcial Bee Colony (ABC) Optimization Algorithm for Solving Constrained Optimization Problems (Dervis Karaboga and Bahriye Basturk)
 
 ## Biography not yet implemented
 
