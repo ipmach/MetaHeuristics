@@ -16,7 +16,8 @@ class TabuSearch:
         :return:
         """
         for cl in clist:
-            if isinstance(c, list) or type(c).__module__ == np.__name__:
+            #print(type(c).__module__ == np.__name__, type(c).__module__)
+            if isinstance(c, list): #or type(c).__module__ == np.__name__:
                 if len(c) == len(cl) and all(c == cl):
                     return True
             else:
